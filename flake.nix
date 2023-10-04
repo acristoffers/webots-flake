@@ -60,6 +60,15 @@
           xvfb-run
           zip
         ];
+        desktopFile = (pkgs.makeDesktopItem rec {
+          name = "webots";
+          exec = "%%EXEC%%";
+          icon = "${webots}/resources/icons/core/webots.png";
+          comment = "Webots in an FHS environment";
+          desktopName = "Webots";
+          genericName = "Webots";
+          categories = [ "Utility" ];
+        });
       in
       rec {
         formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
@@ -72,7 +81,13 @@
               export WEBOTS_HOME=${webots}
               exec ${webots}/webots "$@"
             '';
-          meta.description = "Webots in FHS environment";
+          extraInstallCommands = ''
+            mkdir -p $out
+            cp -r ${desktopFile}/* $out/
+            chmod +w $out/share/applications
+            sed -i "s#%%EXEC%%#$out/bin/webots#" $out/share/applications/webots.desktop
+          '';
+          meta.description = "Webots in an FHS environment";
         };
         apps.default = {
           type = "app";
