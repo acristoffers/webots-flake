@@ -61,12 +61,12 @@
           zip
         ];
         desktopFile = (pkgs.makeDesktopItem rec {
-          name = "webots";
+          name = "webots-fhs";
           exec = "%%EXEC%%";
           icon = "${webots}/resources/icons/core/webots.png";
           comment = "Webots in an FHS environment";
-          desktopName = "Webots";
-          genericName = "Webots";
+          desktopName = "Webots (FHS)";
+          genericName = "Webots (FHS)";
           categories = [ "Utility" ];
         });
       in
@@ -85,7 +85,7 @@
             mkdir -p $out
             cp -r ${desktopFile}/* $out/
             chmod +w $out/share/applications
-            sed -i "s#%%EXEC%%#$out/bin/webots#" $out/share/applications/webots.desktop
+            sed -i "s#%%EXEC%%#$out/bin/webots#" $out/share/applications/webots-fhs.desktop
           '';
           meta.description = "Webots in an FHS environment";
         };
