@@ -59,6 +59,7 @@
           xorg.xcbutil
           xvfb-run
           zip
+          zlib
         ];
         desktopFile = (pkgs.makeDesktopItem rec {
           name = "webots-fhs";
