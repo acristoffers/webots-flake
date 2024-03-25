@@ -21,7 +21,6 @@
           expat
           ffmpeg
           fox
-          freeimage
           freetype
           gdal
           gl2ps
