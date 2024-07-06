@@ -60,7 +60,7 @@
           zip
           zlib
         ];
-        desktopFile = (pkgs.makeDesktopItem rec {
+        desktopFile = (pkgs.makeDesktopItem {
           name = "webots-fhs";
           exec = "%%EXEC%%";
           icon = "${webots}/resources/icons/core/webots.png";
